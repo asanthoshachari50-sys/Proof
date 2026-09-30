@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Proof: verified project portfolios for students</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#EEF1F9;--sf:#fff;--ink:#141830;--mu:#5B6280;--ln:#D9DEEE;--br:#3346F5;--bi:#fff;--ok:#0E9F6E;--st:#F0457A;--so:#E1E6FB;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1122;--sf:#181C36;--ink:#EEF0FF;--mu:#9AA2C7;--ln:#2A2F55;--br:#7B8AFF;--bi:#0E1122;--ok:#3DDC97;--st:#FF6B98;--so:#232852}}
+:root[data-theme="dark"]{--bg:#0E1122;--sf:#181C36;--ink:#EEF0FF;--mu:#9AA2C7;--ln:#2A2F55;--br:#7B8AFF;--bi:#0E1122;--ok:#3DDC97;--st:#FF6B98;--so:#232852}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 Figtree,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3{font-family:'Bricolage Grotesque',Figtree,sans-serif;line-height:1.03;margin:0;letter-spacing:-.03em}
+h1{font-size:clamp(2.8rem,7vw,5.6rem);font-weight:800}h2{font-size:clamp(2rem,4.5vw,3.3rem);font-weight:700}h3{font-size:1.3rem;font-weight:700;line-height:1.2}
+p{margin:0}a{color:inherit}
+.w{max-width:1160px;margin:0 auto;padding:0 24px}section{padding:110px 0}
+:focus-visible{outline:3px solid var(--br);outline-offset:3px;border-radius:8px}
+#pg{position:fixed;top:env(safe-area-inset-top,0px);left:0;height:4px;width:100%;background:var(--br);transform:scaleX(0);transform-origin:0 50%;z-index:50}
+.btn{display:inline-flex;align-items:center;justify-content:center;font:600 1rem Figtree,sans-serif;padding:14px 26px;border-radius:999px;border:2px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;text-decoration:none;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--ink)}.btn.p{background:var(--br);border-color:var(--br);color:var(--bi)}.btn.p:hover{box-shadow:4px 4px 0 var(--ink)}.btn.s{padding:9px 18px;font-size:.92rem}
+header.nv{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;backdrop-filter:blur(14px);background:color-mix(in srgb,var(--bg) 78%,transparent)}
+nav{display:flex;justify-content:space-between;align-items:center;padding:16px 0}
+.logo{font:800 1.6rem 'Bricolage Grotesque',sans-serif;letter-spacing:-.04em;text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo i{width:26px;height:26px;border-radius:8px;background:var(--br);display:grid;place-items:center;color:var(--bi);font-style:normal;font-size:.9rem}
+nav .l{display:flex;gap:26px;align-items:center}nav .l a:not(.btn){text-decoration:none;color:var(--mu);font-weight:500}nav .l a:not(.btn):hover{color:var(--ink)}
+.hero{padding:56px 0 110px;display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;position:relative}
+.lead{font-size:1.25rem;color:var(--mu);max-width:32em;margin:24px 0 32px}.cta{display:flex;gap:14px;flex-wrap:wrap}
+.blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5;z-index:-1;background:var(--br)}.b1{width:320px;height:320px;right:-60px;top:0}.b2{width:220px;height:220px;left:30%;bottom:0;background:var(--st);opacity:.28}
+.card{background:var(--sf);border:2px solid var(--ink);border-radius:24px;padding:24px;position:relative;box-shadow:8px 8px 0 var(--ink)}
+.ch{display:flex;justify-content:space-between;gap:12px}.ch b{font:700 1.2rem 'Bricolage Grotesque',sans-serif}.ch span{color:var(--mu);font-size:.9rem;display:block}
+.av{width:40px;height:40px;border-radius:50%;background:var(--so);display:grid;place-items:center;font-weight:700;color:var(--br);flex:none}
+.gr{margin:18px 0 8px;border-radius:14px;background:var(--so);padding:10px}.gr svg{display:block;width:100%;height:auto}
+.gr path{fill:none;stroke:var(--br);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:600;stroke-dashoffset:600;animation:dr 1.6s .4s cubic-bezier(.6,0,.2,1) forwards}@keyframes dr{to{stroke-dashoffset:0}}
+.ck{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:10px}
+.ck li{display:flex;gap:10px;align-items:center;font-weight:500;opacity:0;transform:translateX(-10px);animation:in .5s var(--d) forwards}
+.ck li:before{content:"✓";width:22px;height:22px;border-radius:50%;background:var(--ok);color:#fff;font-size:.8rem;display:grid;place-items:center;flex:none}@keyframes in{to{opacity:1;transform:none}}
+.stamp{position:absolute;right:-14px;bottom:26px;border:4px solid var(--st);color:var(--st);font:800 1.6rem 'Bricolage Grotesque',sans-serif;padding:6px 16px;border-radius:12px;background:var(--sf);transform:rotate(-12deg) scale(3);opacity:0;animation:sp .45s 2.9s cubic-bezier(.3,1.6,.5,1) forwards}@keyframes sp{to{transform:rotate(-12deg) scale(1);opacity:1}}
+.mq{overflow:hidden;background:var(--ink);color:var(--bg);padding:20px 0;transform:rotate(-1.2deg);margin:0 -20px}
+.mq div{display:flex;gap:48px;width:max-content;animation:mq 28s linear infinite;font:700 1.6rem 'Bricolage Grotesque',sans-serif;letter-spacing:-.02em}.mq span:nth-child(even){color:var(--br)}@keyframes mq{to{transform:translateX(-50%)}}
+.sty{font:700 clamp(1.8rem,4.6vw,3.4rem)/1.15 'Bricolage Grotesque',sans-serif;letter-spacing:-.03em;max-width:980px}.sty span{opacity:.15;transition:opacity .2s}
+.pin{height:320vh;padding:0;position:relative}.stk{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+.trk{display:flex;width:300%;will-change:transform}.pn{width:33.3333%;padding:0 24px;display:flex;justify-content:center}
+.pi{max-width:1000px;width:100%;display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:center}
+.big{font:800 clamp(8rem,22vw,18rem)/.8 'Bricolage Grotesque',sans-serif;color:transparent;-webkit-text-stroke:3px var(--br)}
+.pi p{color:var(--mu);font-size:1.2rem;margin-top:16px;max-width:26em}.pi h2{font-size:clamp(2rem,5vw,3.6rem)}
+.dots{display:flex;gap:10px;justify-content:center;margin-top:36px}.dots i{width:34px;height:6px;border-radius:9px;background:var(--ln);transition:all .3s}.dots i.on{background:var(--br);width:64px}
+.hd{max-width:640px;margin-bottom:44px}.hd p{color:var(--mu);margin-top:14px;font-size:1.1rem}
+.tabs{display:grid;grid-template-columns:.8fr 1.2fr;gap:28px}.tl{display:grid;gap:10px;align-content:start}
+.tl button{text-align:left;font:600 1.1rem 'Bricolage Grotesque',sans-serif;padding:18px 20px;border-radius:16px;border:2px solid var(--ln);background:var(--sf);color:var(--ink);cursor:pointer;transition:all .2s}
+.tl button[aria-selected="true"]{border-color:var(--br);background:var(--br);color:var(--bi);transform:translateX(10px)}
+.tp{background:var(--sf);border:2px solid var(--ink);border-radius:24px;padding:36px;box-shadow:8px 8px 0 var(--ink);min-height:230px}
+.tp h3{font-size:1.8rem}.tp p{color:var(--mu);margin-top:12px;font-size:1.1rem;max-width:30em}.tp>div{animation:sl .45s cubic-bezier(.2,.8,.2,1)}@keyframes sl{from{opacity:0;transform:translateX(28px)}}
+.demo{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:start}
+.chat{background:var(--sf);border:2px solid var(--ink);border-radius:24px;padding:20px;min-height:420px;display:flex;flex-direction:column;gap:12px;box-shadow:8px 8px 0 var(--ink)}
+.m{max-width:88%;padding:12px 16px;border-radius:18px;animation:pop .35s ease-out}@keyframes pop{from{opacity:0;transform:translateY(8px) scale(.97)}}
+.m.a{background:var(--so);border-bottom-left-radius:4px}.m.u{background:var(--br);color:var(--bi);align-self:flex-end;border-bottom-right-radius:4px}
+.op{display:grid;gap:8px;margin-top:auto}.op button{text-align:left;font:500 .95rem Figtree,sans-serif;color:var(--ink);background:transparent;border:2px solid var(--ln);border-radius:14px;padding:11px 14px;cursor:pointer;transition:all .15s}.op button:hover{border-color:var(--br);background:var(--so)}
+.mt{margin-top:28px;height:14px;border-radius:99px;background:var(--so);overflow:hidden}.mt div{height:100%;width:0;background:var(--ok);border-radius:99px;transition:width .8s cubic-bezier(.3,1,.4,1)}.ml{display:flex;justify-content:space-between;margin-top:10px;font-weight:600}
+.fb{background:var(--sf);border:2px solid var(--ln);border-radius:28px;padding:36px}.fg{margin-bottom:24px}.fg b{display:block;margin-bottom:10px;color:var(--mu);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:10px}.chip{font:600 .95rem Figtree,sans-serif;padding:9px 18px;border-radius:999px;border:2px solid var(--ln);background:var(--bg);color:var(--ink);cursor:pointer;transition:all .15s}.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink);transform:scale(1.05)}
+.out{margin-top:8px;padding:24px;border-radius:18px;background:var(--so);font:700 1.5rem/1.3 'Bricolage Grotesque',sans-serif;letter-spacing:-.02em}
+details{border-bottom:2px solid var(--ln);padding:22px 0}summary{cursor:pointer;font:700 1.35rem 'Bricolage Grotesque',sans-serif;list-style:none;display:flex;justify-content:space-between;gap:16px}summary::-webkit-details-marker{display:none}summary:after{content:"+";color:var(--br);font-size:1.8rem;line-height:1;transition:transform .3s}details[open] summary:after{transform:rotate(45deg)}details p{color:var(--mu);margin-top:12px;max-width:40em}
+.join{background:var(--br);color:var(--bi);border-radius:32px;padding:64px 48px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}.join p{margin-top:14px;opacity:.88;font-size:1.1rem}
+.join form{display:grid;gap:12px}.join input,.join select{font:500 1rem Figtree,sans-serif;padding:15px 18px;border-radius:14px;border:2px solid transparent;background:var(--sf);color:var(--ink);width:100%}.join .btn{background:var(--ink);color:var(--bg);border-color:var(--ink)}.join .btn:hover{box-shadow:4px 4px 0 var(--sf)}.ok2{display:none;font:700 1.5rem 'Bricolage Grotesque',sans-serif}
+footer{padding:40px 0 56px;color:var(--mu);font-size:.92rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.rv{opacity:0;transform:translateY(34px);transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.2,1)}.rl{transform:translateX(-60px)}.rr{transform:translateX(60px)}.rv.on{opacity:1;transform:none}
+@media(max-width:900px){.hero,.demo,.join,.tabs{grid-template-columns:1fr}section{padding:72px 0}.join{padding:40px 24px}nav .l a:not(.btn){display:none}.stamp{right:8px}.pi{grid-template-columns:1fr;gap:8px}.big{font-size:7rem}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-delay:0s!important;transition:none!important}html{scroll-behavior:auto}.rv{opacity:1;transform:none}.mq div{animation:none}}
+</style></head><body>
+<div id="pg"></div>
+<header class="nv"><div class="w"><nav><a class="logo" href="#top"><i>✓</i>Proof</a><div class="l"><a href="#how">How it works</a><a href="#try">Try it</a><a href="#recruiters">For recruiters</a><a href="#faq">Questions</a><a class="btn s p" href="#join">Join waitlist</a></div></nav></div></header>
+
+<main id="top">
+<div class="w hero">
+<div class="blob b1" data-px=".08"></div><div class="blob b2" data-px="-.05"></div>
+<div><h1>Show what you built. Prove you built it.</h1><p class="lead">Connect a project. Proof reads your code, checks your commits and asks the questions only the real builder can answer. You get a verified profile recruiters trust.</p>
+<div class="cta"><a class="btn p" href="#join">Get early access</a><a class="btn" href="#try">Defend a project</a></div></div>
+<div class="card" aria-label="How a verified project card looks">
+<div class="ch"><div><b>Your project</b><span>Repo and live demo</span></div><div class="av">You</div></div>
+<div class="gr"><svg viewBox="0 0 400 90" aria-hidden="true"><path d="M5 80 L45 70 L80 74 L120 50 L160 56 L200 34 L240 42 L280 22 L320 30 L360 12 L395 16"/></svg></div>
+<ul class="ck"><li style="--d:1.2s">Commits match the author</li><li style="--d:1.7s">Live demo is reachable</li><li style="--d:2.2s">Project defended</li></ul>
+<div style="height:56px"></div><div class="stamp">VERIFIED</div></div>
+</div>
+
+<div class="mq" aria-hidden="true"><div><span>React</span><span>Node</span><span>Python</span><span>React Native</span><span>Flutter</span><span>Next.js</span><span>Django</span><span>Machine learning</span><span>React</span><span>Node</span><span>Python</span><span>React Native</span><span>Flutter</span><span>Next.js</span><span>Django</span><span>Machine learning</span></div></div>
+
+<section><div class="w"><p class="sty" id="sty">Every hackathon ends the same way. The project goes quiet on GitHub, and the resume gets one more line. Recruiters read claims. Students deserve to show proof.</p></div></section>
+
+<div class="pin" id="how"><div class="stk"><div class="w" style="width:100%;padding:0 24px 0"><div class="hd" style="margin-bottom:0"><h2>Verified in three steps</h2></div></div>
+<div class="trk" id="trk">
+<div class="pn"><div class="pi"><div class="big">1</div><div><h2>Connect your repo</h2><p>Sign in with GitHub and choose a project. Add a demo link if it's live.</p></div></div></div>
+<div class="pn"><div class="pi"><div class="big">2</div><div><h2>Defend your work</h2><p>Answer short questions about your own design choices, bugs and trade-offs.</p></div></div></div>
+<div class="pn"><div class="pi"><div class="big">3</div><div><h2>Share your proof</h2><p>Get a public profile that shows the evidence behind every claim.</p></div></div></div>
+</div><div class="dots" id="dots"><i class="on"></i><i></i><i></i></div></div></div>
+
+<section><div class="w"><div class="hd rv"><h2>What Proof checks</h2><p>Four signals, each one backed by evidence you can open.</p></div>
+<div class="tabs rv"><div class="tl" role="tablist" id="tl"></div><div class="tp" id="tp" role="tabpanel"></div></div></div></section>
+
+<section id="try"><div class="w demo">
+<div class="rv rl"><div class="hd" style="margin-bottom:0"><h2>Try a defense round</h2><p>Proof asks what a code review would ask. Pick an answer and watch your score move. Specific answers score higher.</p></div>
+<div class="mt" role="progressbar" aria-label="Defense score"><div id="bar"></div></div><div class="ml"><span>Defense score</span><span id="pct">0%</span></div></div>
+<div class="chat rv rr" id="chat" aria-live="polite"></div></div></section>
+
+<section id="recruiters"><div class="w"><div class="hd rv"><h2>Hire by evidence, not keywords</h2><p>Build the search you would run. Proof will let recruiters filter by what people shipped.</p></div>
+<div class="fb rv" id="fb"></div></div></section>
+
+<section id="faq"><div class="w"><div class="hd rv"><h2>Questions, answered</h2></div><div class="rv">
+<details><summary>Is Proof free for students?</summary><p>Yes. Students build and share profiles at no cost. Recruiters and colleges pay for search and placement tools.</p></details>
+<details><summary>Can someone fake a verified project?</summary><p>Questions come from your own code and commit history, so only the person who built it can answer them well. Every score links to its evidence.</p></details>
+<details><summary>Which projects can I add?</summary><p>Any project in a GitHub repo you choose, in any language. Live demos make your proof stronger.</p></details>
+<details><summary>Does Proof read all my repos?</summary><p>No. Proof only looks at the repositories you pick.</p></details></div></div></section>
+
+<section id="join" style="padding-top:40px"><div class="w"><div class="join rv"><div><h2>Get early access</h2><p>Join the waitlist and be first in when Proof opens.</p></div>
+<div><form id="f"><input type="email" required placeholder="Email address" aria-label="Email address"><select aria-label="I am"><option>I'm a student</option><option>I'm a recruiter</option><option>I'm from a college</option></select><button class="btn" type="submit">Join the waitlist</button></form><div class="ok2" id="ok">You're on the list. We'll email you when Proof opens.</div></div></div>
+<footer><span>Proof. Built by students, for students.</span><span>© 2026</span></footer></div></section>
+</main>
+<script>
+var $=function(s){return document.querySelector(s)},RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+// reveal on scroll
+var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('on');io.unobserve(x.target)}})},{threshold:.15});
+document.querySelectorAll('.rv').forEach(function(e){io.observe(e)});
+// word-by-word statement
+var sty=$('#sty');sty.innerHTML=sty.textContent.split(' ').map(function(w){return'<span>'+w+'</span>'}).join(' ');var sw=sty.querySelectorAll('span');
+var trk=$('#trk'),pin=$('#how'),dots=document.querySelectorAll('#dots i'),pg=$('#pg'),px=document.querySelectorAll('[data-px]');
+function tick(){var y=scrollY,H=document.documentElement.scrollHeight-innerHeight;pg.style.transform='scaleX('+(y/H)+')';
+var r=sty.getBoundingClientRect(),p=Math.min(Math.max((innerHeight*.85-r.top)/(innerHeight*.55+r.height*.5),0),1);sw.forEach(function(s,i){s.style.opacity=RM||p*sw.length>i?1:.15});
+var b=pin.getBoundingClientRect(),t=Math.min(Math.max(-b.top/(b.height-innerHeight),0),1);trk.style.transform='translateX('+(-t*66.6667)+'%)';var k=Math.min(2,Math.floor(t*3));dots.forEach(function(d,i){d.classList.toggle('on',i===k)});
+px.forEach(function(e){e.style.transform='translateY('+(y*e.dataset.px)+'px)'})}
+addEventListener('scroll',function(){requestAnimationFrame(tick)},{passive:true});addEventListener('resize',tick);tick();
+// signals tabs
+var S=[["Commit history","Proof compares who wrote what and when. Steady work over time reads very differently from one giant upload."],["Code structure","Proof looks at how the project is organized, how the parts connect and whether there are tests."],["Live demo","If you add a link, Proof opens it to confirm the project runs and matches the repo."],["Your answers","Proof asks about your choices and bugs. Your own words are the strongest evidence."]],tl=$('#tl'),tp=$('#tp');
+function pick(n){tl.querySelectorAll('button').forEach(function(b,i){b.setAttribute('aria-selected',i===n)});tp.innerHTML='<div><h3>'+S[n][0]+'</h3><p>'+S[n][1]+'</p></div>'}
+S.forEach(function(s,i){var b=document.createElement('button');b.setAttribute('role','tab');b.textContent=s[0];b.onclick=function(){pick(i)};tl.appendChild(b)});pick(0);
+// defense demo
+var Q=[{q:"Why did you keep cart data in Redis instead of your main database?",a:[["Sessions expire quickly and Redis reads are fast, so checkout stays snappy.",34],["It was in a tutorial I followed.",6],["I'm not sure, a teammate set it up.",0]]},{q:"A user reports duplicate orders. How would you find the cause?",a:[["Check request logs for retries, then add an idempotency key to order creation.",33],["Delete the duplicates by hand.",4],["Restart the server and hope it stops.",0]]},{q:"What would you change with 100x more users?",a:[["Add caching, move slow work to a queue, and index the search queries.",33],["Buy a bigger server.",8],["Nothing, it works now.",0]]}];
+var chat=$('#chat'),bar=$('#bar'),pct=$('#pct'),sc=0,qi=0;
+function msg(c,t){var d=document.createElement('div');d.className='m '+c;d.textContent=t;chat.appendChild(d)}
+function ask(){var o=document.createElement('div');o.className='op';
+if(qi>=Q.length){msg('a',sc>=90?"Verified. You clearly built this and understand it.":sc>=60?"Almost there. Add more detail about your reasoning and try again.":"Not yet. Review how your project works, then defend it again.");var b=document.createElement('button');b.textContent='Try again';b.onclick=function(){chat.innerHTML='';sc=0;qi=0;bar.style.width='0';pct.textContent='0%';ask()};o.appendChild(b);chat.appendChild(o);return}
+msg('a',Q[qi].q);Q[qi].a.forEach(function(x){var b=document.createElement('button');b.textContent=x[0];b.onclick=function(){o.remove();msg('u',x[0]);sc+=x[1];var s=Math.min(sc,100);bar.style.width=s+'%';pct.textContent=s+'%';qi++;setTimeout(ask,500)};o.appendChild(b)});chat.appendChild(o)}
+ask();
+// recruiter search builder
+var G=[["Built with",["React","Node","Python","React Native"]],["Built",["Solo","In a team"]],["Status",["Deployed","Defended"]]],sel={},fb=$('#fb'),out;
+G.forEach(function(g){var d=document.createElement('div');d.className='fg';d.innerHTML='<b>'+g[0]+'</b>';var c=document.createElement('div');c.className='chips';g[1].forEach(function(t){var b=document.createElement('button');b.className='chip';b.textContent=t;b.setAttribute('aria-pressed','false');b.onclick=function(){sel[t]=!sel[t];b.setAttribute('aria-pressed',!!sel[t]);show()};c.appendChild(b)});d.appendChild(c);fb.appendChild(d)});
+out=document.createElement('div');out.className='out';out.setAttribute('aria-live','polite');fb.appendChild(out);
+function show(){var a=Object.keys(sel).filter(function(k){return sel[k]});out.textContent=a.length?'Show me builders who used or are '+a.join(', ')+'.':'Pick a few filters to build your search.'}show();
+$('#f').onsubmit=function(e){e.preventDefault();this.style.display='none';$('#ok').style.display='block'};
+</script></body></html>
