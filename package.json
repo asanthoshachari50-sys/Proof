@@ -1,0 +1,8 @@
+{
+  "name": "proof-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Proof — verified portfolios for student builders",
+  "scripts": { "start": "node server.js", "dev": "node server.js", "test": "node --test" },
+  "engines": { "node": ">=18" }
+}

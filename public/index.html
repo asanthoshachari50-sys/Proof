@@ -169,15 +169,17 @@ out=document.createElement('div');out.className='out';out.setAttribute('aria-liv
 function show(){var a=Object.keys(sel).filter(function(k){return sel[k]});out.textContent=a.length?'Show me builders who used or are '+a.join(', ')+'.':'Pick a few filters to build your search.'}show();
 $('#f').onsubmit=function(e){e.preventDefault();this.style.display='none';$('#ok').style.display='block';say('You’re on the early-access list.')}
 
-// lightweight local demo authentication
+// Secure API-backed authentication
 var modal=$('#auth-modal'),authForm=$('#auth-form'),authEmail=$('#auth-email'),authPassword=$('#auth-password'),authError=$('#auth-error'),authTitle=$('#auth-title'),authSwitch=$('#auth-switch'),authMode='create',toast=$('#toast');
 function say(t){toast.textContent=t;toast.classList.add('show');setTimeout(function(){toast.classList.remove('show')},3500)}
 function openAuth(){modal.classList.add('open');modal.setAttribute('aria-hidden','false');setTimeout(function(){authEmail.focus()},220)}
 function closeAuth(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');authError.textContent=''}
 function setMode(mode){authMode=mode;var signin=mode==='signin';authTitle.textContent=signin?'Welcome back':'Create your builder profile';authSwitch.textContent=signin?'Create one':'Sign in';authSwitch.parentNode.firstChild.textContent=signin?'New to Proof? ':'Already have a profile? ';authPassword.autocomplete=signin?'current-password':'new-password';authForm.querySelector('button').innerHTML=signin?'Sign in <span aria-hidden="true">→</span>':'Create profile <span aria-hidden="true">→</span>';authError.textContent=''}
-function showUser(email){var trigger=document.querySelector('.auth-trigger');if(!trigger)return;var initials=email.split('@')[0].slice(0,2).toUpperCase();document.querySelectorAll('.auth-trigger').forEach(function(b){b.outerHTML='<span class="user-menu"><span class="user-dot">'+initials+'</span>Profile ready</span>'});say('Welcome to Proof — your builder profile is ready.')}
+function showUser(email){document.querySelectorAll('.auth-trigger').forEach(function(b){b.outerHTML='<a class="user-menu" href="/dashboard.html"><span class="user-dot">'+email.split('@')[0].slice(0,2).toUpperCase()+'</span>Open dashboard</a>'})}
+function api(path,options){return fetch(path,options).then(function(r){return r.json().then(function(data){if(!r.ok)throw new Error(data.error||'Something went wrong.');return data})})}
 document.querySelectorAll('.auth-trigger').forEach(function(b){b.addEventListener('click',openAuth)});document.querySelectorAll('[data-close-auth]').forEach(function(b){b.addEventListener('click',closeAuth)});authSwitch.addEventListener('click',function(){setMode(authMode==='create'?'signin':'create')});
-authForm.addEventListener('submit',function(e){e.preventDefault();var email=authEmail.value.trim(),pw=authPassword.value;if(!email||!authEmail.validity.valid){authError.textContent='Enter a valid email address.';authEmail.focus();return}if(pw.length<8){authError.textContent='Use at least 8 characters for your password.';authPassword.focus();return}localStorage.setItem('proof-user',email);showUser(email);closeAuth();authForm.reset()});
-addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('open'))closeAuth()});var savedUser=localStorage.getItem('proof-user');if(savedUser)showUser(savedUser);
+authForm.addEventListener('submit',function(e){e.preventDefault();var email=authEmail.value.trim(),pw=authPassword.value;if(!email||!authEmail.validity.valid){authError.textContent='Enter a valid email address.';authEmail.focus();return}if(pw.length<8){authError.textContent='Use at least 8 characters for your password.';authPassword.focus();return}authError.textContent='';var route=authMode==='signin'?'/api/auth/login':'/api/auth/register';api(route,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,password:pw})}).then(function(data){localStorage.setItem('proof-token',data.token);closeAuth();location.href='/dashboard.html'}).catch(function(error){authError.textContent=error.message})});
+addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('open'))closeAuth()});
+if(localStorage.getItem('proof-token'))showUser('you@proof.app');
 
 </script></body></html>
